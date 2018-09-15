@@ -36,40 +36,40 @@ void setup() {
 void loop() {
   joystickX = analogRead(PIN_joystickX);
   joystickY = analogRead(PIN_joystickY);
-  trigger_PRESSED = (digitalRead(PIN_trigger) == HIGH);
-  jump_PRESSED = (digitalRead(PIN_jump) == HIGH);
-  reload_PRESSED = (digitalRead(PIN_reload) == HIGH);
-  special_PRESSED = (digitalRead(PIN_special) == HIGH);
+  trigger_PRESSED = digitalRead(PIN_trigger) == HIGH;
+  jump_PRESSED    = digitalRead(PIN_jump)    == HIGH;
+  reload_PRESSED  = digitalRead(PIN_reload)  == HIGH;
+  special_PRESSED = digitalRead(PIN_special) == HIGH;
 
   joystickX_DISPLACEMENT = joystickX - joystickX_REST; // How far joystickX is from the center
   joystickY_DISPLACEMENT = joystickY - joystickY_REST; // How far joystickY is from the center
 
   if (joystickX_DISPLACEMENT > 100) { // Arbitrary number. Scale goes from 0 to 1023, with a rest at about 511, so your displacement can only be between -511 and 512.
-    STRING("w");
+    Serial.print("w");
   }
   if (joystickX_DISPLACEMENT < -100) { // Arbitrary number. Scale goes from 0 to 1023, with a rest at about 511, so your displacement can only be between -511 and 512.
-    STRING("s");
+    Serial.print("s");
   }
   if (joystickY_DISPLACEMENT > 100) { // Arbitrary number. Scale goes from 0 to 1023, with a rest at about 511, so your displacement can only be between -511 and 512.
-    STRING("d");
+    Serial.print("d");
   }
   if (joystickY_DISPLACEMENT < -100) { // Arbitrary number. Scale goes from 0 to 1023, with a rest at about 511, so your displacement can only be between -511 and 512.
-    STRING("a");
+    Serial.print("a");
   }
  if (trigger_PRESSED) {
-    STRING("t");
+    Serial.print("t");
  }
   
  if (jump_PRESSED) {//change to !jump_PRESSED
-    STRING("i"); // Space wasn't working
+    Serial.print("i"); // Space wasn't working
  }
  
  if (reload_PRESSED) {
-    STRING("r");
+    Serial.print("r");
  }
 
  if (special_PRESSED) {
-    STRING("q");
+    Serial.print("q");
  }
 
   //ENTER();
